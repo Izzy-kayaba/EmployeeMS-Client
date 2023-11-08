@@ -1,0 +1,51 @@
+<div class="mt-5 d-flex align-items-center justify-content-center vh-100 bg-sombre px-3">
+    <div class="border border-1 p-5 card rounded-3 text-black">
+        <form #loginForm="ngForm" method="post" (ngSubmit)="onSubmit()">
+            <div class="text-center">
+                <img src="assets/ik-logo.jpeg" alt="" width="100" height="100">
+                <h5>Sign into your account</h5>
+            </div>
+            <div class="form-group">
+                <input [(ngModel)]="userModel.email" #emailRef="ngModel" type="email" name="email" id="email"
+                    placeholder="Email address" [pattern]="emailPattern" class="form-control"
+                    [class.is-invalid]="emailRef.touched && emailRef.invalid" required />
+
+                <div *ngIf="emailRef.errors && (emailRef.invalid||emailRef.touched)">
+                    <small class="text-danger" *ngIf="emailRef.touched && emailRef.errors?.['required']">
+                        Email is required
+                    </small>
+                    <small class="text-danger" *ngIf="emailRef.errors?.['pattern']">
+                        Email is invalid
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group my-3">
+                <input [(ngModel)]="userModel.password" #passwordRef="ngModel" type="password" name="password"
+                    placeholder="Password" id="password" required class="form-control"
+                    [class.is-invalid]="passwordRef.touched && passwordRef.invalid" autocomplete>
+                <small class="text-danger" [class.d-none]="passwordRef.untouched || passwordRef.valid">
+                    Password is required
+                </small>
+            </div>
+
+            <div class="alert alert-danger py-1" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+
+            <div class="form-group text-center mt-3">
+                <button type="submit" class="w-100 btn-sombre my-2">
+                    LOGIN
+                </button>
+                <a routerLink="/login" target="_blank" class="nav-link">Forgot Password?</a>
+            </div>
+
+            <div class="form-group mt-3">
+                <div class="text-center">
+                    Don't have an account ?
+                    <a routerLink="/login" target="_blank" class="btn-sombre">CREATE NEW</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

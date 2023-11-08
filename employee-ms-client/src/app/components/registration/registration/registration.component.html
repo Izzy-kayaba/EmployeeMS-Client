@@ -1,0 +1,43 @@
+<div class="mt-5 d-flex align-items-center justify-content-center vh-100 bg-sombre">
+    <div class="border border-1 p-5 bg-info">
+        <form #loginForm="ngForm" action="" method="post" novalidate (ngSubmit)="onSubmit()">
+            <div class="text-center">
+                <h1>Logo</h1>
+                <h4>Sign In</h4>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input [(ngModel)]="userModel.email" #emailRef="ngModel" type="email" name="email" id="email"
+                    [pattern]="emailPattern" class="form-control"
+                    [class.is-invalid]="emailRef.touched && emailRef.invalid" required />
+
+                <div *ngIf="emailRef.errors && (emailRef.invalid||emailRef.touched)">
+                    <small class="text-danger" *ngIf="emailRef.touched && emailRef.errors?.['required']">
+                        Email is required
+                    </small>
+                    <small class="text-danger" *ngIf="emailRef.errors?.['pattern']">
+                        Email is invalid
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <label class="form-label" for="password">Password</label>
+                <input [(ngModel)]="userModel.password" #passwordRef="ngModel" type="password" name="password"
+                    id="password" required class="form-control" autocomplete
+                    [class.is-invalid]="passwordRef.touched && passwordRef.invalid" >
+                <small class="text-danger" [class.d-none]="passwordRef.untouched || passwordRef.valid">
+                    Password is required
+                </small>
+            </div>
+
+            <div class="form-group">
+                <button [disabled]="loginForm.form.invalid" type="submit">Register</button>
+            </div>
+
+            <a href="/" target="_self" class="d-block">Already have an account ?</a>
+
+        </form>
+    </div>
+</div>

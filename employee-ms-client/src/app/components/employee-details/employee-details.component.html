@@ -1,0 +1,18 @@
+<div class="d-flex flex-nowrap min-vh-100">
+    <main class="row pt-5">
+        <div class="col-12">
+            <div class="mt-2">
+                <a routerLink="/admin/employees" class="btn btn-primary">Back</a>
+                <div *ngIf="employee" class="mt-2">
+                    <h2>{{ employee.name }} {{ employee.surname }}</h2>
+                    <p> Name: <b> {{ employee.name }} </b></p>
+                    <p>Surname: <b>{{ employee.surname }} </b></p>
+                    <p>Email:<b> {{ employee.email }} </b></p>
+                    <p>Salary: <b>{{ employee.salary | currency }} </b></p>
+                    <p>BirthDate:<b> {{ employee.birthdate | date }} </b></p>
+                    <p>Deparment: <b>{{ employee.department }} </b></p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
